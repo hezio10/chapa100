@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['route_id', 'transport_type_id', 'price', 'currency', 'effective_date', 'end_date'])]
+#[Fillable(['route_id', 'transport_type_id', 'price', 'currency', 'effective_date', 'end_date', 'availability'])]
 class Pricing extends Model
 {
     use HasFactory;

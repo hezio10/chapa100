@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('currency', ['mzn'])->nullable();
             $table->dateTime('effective_date')->nullable();
             $table->dateTime('end_date')->nullable();
+            $table->enum('availability', ['available', 'unavailable'])->default('available');
         });
     }
 

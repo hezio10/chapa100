@@ -16,7 +16,7 @@ class PrincingController extends Controller
             'price' => 'required|numeric|min:0',
             'currency' => 'nullable|in:mzn',
             'effective_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:effective_date',
+            'availability' => 'nullable|in:available,unavailable',
         ]);
 
         // Create a new pricing entry in the database
