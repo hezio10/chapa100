@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\PrincingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test', function (Request $request) {
-    return "test";
+Route::group(['prefix' => 'pricing'], function () {
+    Route::post('/create', [PrincingController::class, 'createPricing']);
 });
