@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 #[Fillable(['service_type_id', 'origin_id', 'destination_id'])]
-class Route extends Model
+class BusLine extends Model
 {
     use HasFactory;
 
@@ -30,6 +30,11 @@ class Route extends Model
         return $this->belongsTo(Location::class, 'destination_id');
     }
 
+    public function transportType(): BelongsTo
+    {
+        return $this->belongsTo(TransportType::class);
+    }
+    
     public function pricings(): HasMany
     {
         return $this->hasMany(Pricing::class);

@@ -16,6 +16,6 @@ class TransportType extends Model
 
     public function pricings(): HasMany
     {
-        return $this->hasMany(Pricing::class);
+        return $this->hasMany(BusLine::class);
     }
 }

@@ -23,13 +23,8 @@ class Pricing extends Model
         ];
     }
 
-    public function route(): BelongsTo
+    public function busline(): BelongsTo
     {
-        return $this->belongsTo(Route::class);
-    }
-
-    public function transportType(): BelongsTo
-    {
-        return $this->belongsTo(TransportType::class);
+        return $this->belongsTo(BusLine::class);
     }
 }

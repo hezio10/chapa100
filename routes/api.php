@@ -37,7 +37,7 @@ Route::group(['prefix' => 'locations'], function () {
     Route::delete('/{location}', [LocationController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'routes'], function () {
+Route::group(['prefix' => 'bus-lines'], function () {
     Route::get('/', [RouteController::class, 'index']);
     Route::post('/', [RouteController::class, 'store']);
     Route::get('/{route}', [RouteController::class, 'show']);
