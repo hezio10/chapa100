@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BusLine;
 use App\Models\Route;
 use App\Models\TransportType;
 use Illuminate\Database\Migrations\Migration;
@@ -15,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Route::class)->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignIdFor(BusLine::class)->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignIdFor(TransportType::class)->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->decimal('price', 10, 2)->nullable();
             $table->enum('currency', ['mzn'])->nullable();
