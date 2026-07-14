@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             ServiceTypeSeeder::class,
             TransportTypeSeeder::class,
             LocationSeeder::class,
-            RouteSeeder::class,
+            BusLineSeeder::class,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\V1\ListBusLinesResource;
+use App\Http\Resources\V1\ShowBusLineResource;
 use App\Models\BusLine;
 use App\Models\Route;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ class BusLineController extends Controller
     {
         return response()->json([
             'message' => 'Route retrieved successfully',
-            'data' => $route,
+            'data' => new ShowBusLineResource($route),
         ]);
     }
 
@@ -40,7 +41,7 @@ class BusLineController extends Controller
 
         return response()->json([
             'message' => 'Route created successfully',
-            'data' => $route,
+            'data' => new ShowBusLineResource($route),
         ], 201);
     }
 
@@ -56,7 +57,7 @@ class BusLineController extends Controller
 
         return response()->json([
             'message' => 'Route updated successfully',
-            'data' => $route,
+            'data' =>new ShowBusLineResource($route),
         ]);
     }
 

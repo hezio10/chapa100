@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\BusLine;
 use App\Models\Route;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RouteSeeder extends Seeder
+class BusLineSeeder extends Seeder
 {
     use WithoutModelEvents;
 
@@ -15,6 +16,6 @@ class RouteSeeder extends Seeder
      */
     public function run(): void
     {
-        Route::factory(20)->create();
+        BusLine::factory(1)->create();
     }
 }

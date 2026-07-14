@@ -17,6 +17,6 @@ class TransportType extends Model
 
     public function pricings(): BelongsToMany
     {
-        return $this->belongsToMany(BusLine::class, 'busline_trasport_types');
+        return $this->belongsToMany(BusLine::class, 'bus_line_transport_types');
     }
 }

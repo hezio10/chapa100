@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(BusLine::class)->constrained()->onUpdate('restrict')->onDelete('restrict');
-            $table->foreignIdFor(TransportType::class)->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->decimal('price', 10, 2)->nullable();
             $table->enum('currency', ['mzn'])->nullable();
             $table->dateTime('effective_date')->nullable();
