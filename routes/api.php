@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusLineController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PrincingController;
 use App\Http\Controllers\ProvinceController;
@@ -38,11 +39,11 @@ Route::group(['prefix' => 'locations'], function () {
 });
 
 Route::group(['prefix' => 'bus-lines'], function () {
-    Route::get('/', [RouteController::class, 'index']);
-    Route::post('/', [RouteController::class, 'store']);
-    Route::get('/{route}', [RouteController::class, 'show']);
-    Route::put('/{route}', [RouteController::class, 'update']);
-    Route::delete('/{route}', [RouteController::class, 'destroy']);
+    Route::get('/', [BusLineController::class, 'index']);
+    Route::post('/', [BusLineController::class, 'store']);
+    Route::get('/{route}', [BusLineController::class, 'show']);
+    Route::put('/{route}', [BusLineController::class, 'update']);
+    Route::delete('/{route}', [BusLineController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'transport-types'], function () {

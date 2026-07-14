@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\V1\ListBusLinesResource;
+use App\Models\BusLine;
 use App\Models\Route;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class RouteController extends Controller
+class BusLineController extends Controller
 {
     public function index(): JsonResponse
     {
-        $routes = Route::all();
+        $routes = BusLine::all();
 
         return response()->json([
             'message' => 'Routes retrieved successfully',
-            'data' => $routes,
+            'data' => new ListBusLinesResource($routes),
         ]);
     }
 
-    public function show(Route $route): JsonResponse
+    public function show(BusLine $route): JsonResponse
     {
         return response()->json([
             'message' => 'Route retrieved successfully',
@@ -34,7 +36,7 @@ class RouteController extends Controller
             'destination_id' => 'required|exists:locations,id',
         ]);
 
-        $route = Route::create($validatedData);
+        $route = BusLine::create($validatedData);
 
         return response()->json([
             'message' => 'Route created successfully',
@@ -42,7 +44,7 @@ class RouteController extends Controller
         ], 201);
     }
 
-    public function update(Request $request, Route $route): JsonResponse
+    public function update(Request $request, BusLine $route): JsonResponse
     {
         $validatedData = $request->validate([
             'service_type_id' => 'sometimes|required|exists:service_types,id',
@@ -58,7 +60,7 @@ class RouteController extends Controller
         ]);
     }
 
-    public function destroy(Route $route): JsonResponse
+    public function destroy(BusLine $route): JsonResponse
     {
         $route->delete();
 
