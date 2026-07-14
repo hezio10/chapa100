@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BusLine;
 use App\Models\Location;
 use App\Models\ServiceType;
 use App\Models\TransportType;
@@ -21,6 +22,11 @@ return new class extends Migration
             $table->foreignIdFor(Location::class, 'destination_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignIdFor(TransportType::class, 'transport_type_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
         });
+
+        Schema::create('busline_tranportypes', function (Blueprint $table) {
+            $table->foreignIdFor(BusLine::class, 'busline_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignIdFor(TransportType::class, 'transport_type_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+        });
     }
 
     /**
@@ -29,5 +35,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('bus_lines');
+        Schema::dropIfExists('busline_tranportypes');
     }
 };

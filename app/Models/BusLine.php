@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #[Fillable(['service_type_id', 'origin_id', 'destination_id'])]
 class BusLine extends Model
@@ -30,9 +31,9 @@ class BusLine extends Model
         return $this->belongsTo(Location::class, 'destination_id');
     }
 
-    public function transportType(): BelongsTo
+    public function transportType(): BelongsToMany
     {
-        return $this->belongsTo(TransportType::class);
+        return $this->belongsToMany(TransportType::class, 'busline_trasport_types');
     }
     
     public function pricings(): HasMany
