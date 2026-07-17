@@ -22,9 +22,8 @@ class TransportTypeController extends Controller
 
     public function getBuslinesByTransporttype(string $id): JsonResponse
     {
-        $transportTypeId = $id;
-        $busLines = BusLine::whereHas('transportType', function($q) {
-            $q->where('id', '1');
+        $busLines = BusLine::whereHas('transportType', function($q) use ($id) {
+            $q->where('id', $id);
         })->get();
 
         return response()->json([
