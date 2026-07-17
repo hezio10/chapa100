@@ -50,6 +50,7 @@ Route::group(['prefix' => 'transport-types'], function () {
     Route::get('/', [TransportTypeController::class, 'index']);
     Route::post('/', [TransportTypeController::class, 'store']);
     Route::get('/{transportType}', [TransportTypeController::class, 'show']);
+    Route::get('/{id}/bus-lines', [TransportTypeController::class, 'getBuslinesByTransporttype']);
     Route::put('/{transportType}', [TransportTypeController::class, 'update']);
     Route::delete('/{transportType}', [TransportTypeController::class, 'destroy']);
 });

@@ -21,6 +21,7 @@ class BusLineController extends Controller
         ]);
     }
 
+
     public function show(BusLine $route): JsonResponse
     {
         return response()->json([

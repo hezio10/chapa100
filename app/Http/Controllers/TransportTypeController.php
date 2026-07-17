@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\V1\ListBusLinesResource;
+use App\Models\BusLine;
 use App\Models\TransportType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,6 +17,19 @@ class TransportTypeController extends Controller
         return response()->json([
             'message' => 'Transport types retrieved successfully',
             'data' => $transportTypes,
+        ]);
+    }
+
+    public function getBuslinesByTransporttype(string $id): JsonResponse
+    {
+        $transportTypeId = $id;
+        $busLines = BusLine::whereHas('transportType', function($q) {
+            $q->where('id', '1');
+        })->get();
+
+        return response()->json([
+            'message' => '',
+            'data' => new ListBusLinesResource($busLines),
         ]);
     }
 
