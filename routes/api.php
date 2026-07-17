@@ -41,6 +41,7 @@ Route::group(['prefix' => 'locations'], function () {
 Route::group(['prefix' => 'bus-lines'], function () {
     Route::get('/', [BusLineController::class, 'index']);
     Route::post('/', [BusLineController::class, 'store']);
+    Route::get('/filter', [BusLineController::class, 'getByOrigninAndDestination']);
     Route::get('/{route}', [BusLineController::class, 'show']);
     Route::put('/{route}', [BusLineController::class, 'update']);
     Route::delete('/{route}', [BusLineController::class, 'destroy']);

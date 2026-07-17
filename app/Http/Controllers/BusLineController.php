@@ -21,6 +21,19 @@ class BusLineController extends Controller
         ]);
     }
 
+    public function getByOrigninAndDestination(Request $request)
+    {
+        $origin_id = $request['origin_id'];
+        $destination_id = $request['destination_id'];
+
+        $busLines = BusLine::where('origin_id', $origin_id)
+                            ->where('destination_id', $destination_id)->get();
+
+        return response()->json([
+            'message' => '',
+            'data' => new ListBusLinesResource($busLines),
+        ]);
+    }
 
     public function show(BusLine $route): JsonResponse
     {
