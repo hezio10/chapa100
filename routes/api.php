@@ -4,10 +4,8 @@ use App\Http\Controllers\BusLineController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PrincingController;
 use App\Http\Controllers\ProvinceController;
-use App\Http\Controllers\RouteController;
 use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\TransportTypeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'pricing'], function () {
@@ -38,10 +36,9 @@ Route::group(['prefix' => 'locations'], function () {
     Route::delete('/{location}', [LocationController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'bus-lines'], function () {
+Route::group(['prefix' => 'buslines'], function () {
     Route::get('/', [BusLineController::class, 'index']);
     Route::post('/', [BusLineController::class, 'store']);
-    Route::get('/filter', [BusLineController::class, 'getByOrigninAndDestination']);
     Route::get('/{route}', [BusLineController::class, 'show']);
     Route::put('/{route}', [BusLineController::class, 'update']);
     Route::delete('/{route}', [BusLineController::class, 'destroy']);
@@ -51,7 +48,7 @@ Route::group(['prefix' => 'transport-types'], function () {
     Route::get('/', [TransportTypeController::class, 'index']);
     Route::post('/', [TransportTypeController::class, 'store']);
     Route::get('/{transportType}', [TransportTypeController::class, 'show']);
-    Route::get('/{id}/bus-lines', [TransportTypeController::class, 'getBuslinesByTransporttype']);
+    Route::get('/{id}/buslines', [TransportTypeController::class, 'getBuslinesByTransporttype']);
     Route::put('/{transportType}', [TransportTypeController::class, 'update']);
     Route::delete('/{transportType}', [TransportTypeController::class, 'destroy']);
 });
