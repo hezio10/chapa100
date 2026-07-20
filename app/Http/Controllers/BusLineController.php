@@ -11,27 +11,23 @@ use Illuminate\Http\Request;
 
 class BusLineController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        if($request->origin_id && $request->destination_id) {
+             $busLines = BusLine::where('origin_id', $request->origin_id)
+                            ->where('destination_id', $request->destination_id)->get();
+
+            return response()->json([
+                'message' => '',
+                'data' => new ListBusLinesResource($busLines),
+            ]);
+        }
+
         $routes = BusLine::all();
 
         return response()->json([
             'message' => 'Routes retrieved successfully',
             'data' => new ListBusLinesResource($routes),
-        ]);
-    }
-
-    public function getByOrigninAndDestination(Request $request)
-    {
-        $origin_id = $request['origin_id'];
-        $destination_id = $request['destination_id'];
-
-        $busLines = BusLine::where('origin_id', $origin_id)
-                            ->where('destination_id', $destination_id)->get();
-
-        return response()->json([
-            'message' => '',
-            'data' => new ListBusLinesResource($busLines),
         ]);
     }
 
