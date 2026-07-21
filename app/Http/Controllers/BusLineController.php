@@ -8,18 +8,25 @@ use App\Models\BusLine;
 use App\Models\Route;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BusLineController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
         if($request->origin_id && $request->destination_id) {
              $busLines = BusLine::where('origin_id', $request->origin_id)
-                            ->where('destination_id', $request->destination_id)->get();
+                                ->where('destination_id', $request->destination_id)
+                                ->get()[0];
 
+            DB::table('most_popular_buslines')->updateOrInsert(
+                ['bus_line_id' => $busLines->id],
+                ['total' => DB::raw('total + 1')],
+            );
+            
             return response()->json([
                 'message' => '',
-                'data' => new ListBusLinesResource($busLines),
+                'data' => new ShowBusLineResource($busLines),
             ]);
         }
 
@@ -36,6 +43,21 @@ class BusLineController extends Controller
         return response()->json([
             'message' => 'Route retrieved successfully',
             'data' => new ShowBusLineResource($route),
+        ]);
+    }
+
+    public function getMostPopularBusLines(): JsonResponse
+    {
+        $busLines = BusLine::query()
+                    ->join('most_popular_buslines','bus_lines.id', '=', 'most_popular_buslines.bus_line_id')
+                    ->select('bus_lines.*', 'most_popular_buslines.total')
+                    ->orderBy('most_popular_buslines.total', 'desc')
+                    ->limit(5)
+                    ->get();
+
+        return response()->json([
+            'message' => 'Route retrieved successfully',
+            'data' => new ListBusLinesResource($busLines),
         ]);
     }
 

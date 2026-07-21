@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['service_type_id', 'origin_id', 'destination_id'])]
+#[Fillable(['id', 'service_type_id', 'origin_id', 'destination_id'])]
 class BusLine extends Model
 {
     use HasFactory;
