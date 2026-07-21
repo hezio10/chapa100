@@ -14,9 +14,9 @@ class BusLineController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->origin_id && $request->destination_id) {
-             $busLines = BusLine::where('origin_id', $request->origin_id)
-                                ->where('destination_id', $request->destination_id)
+        if($request->originBuslineId && $request->destinationBuslineId) {
+             $busLines = BusLine::where('origin_id', $request->originBuslineId)
+                                ->where('destination_id', $request->destinationBuslineId)
                                 ->get()[0];
 
             DB::table('most_popular_buslines')->updateOrInsert(
